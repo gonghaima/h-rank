@@ -1,0 +1,10 @@
+<h8k-navbar header="Customer Records"></h8k-navbar>
+<customer-table
+  [customers]="customers"
+  (setSelectedId)="setSelectedId($event)"
+></customer-table>
+<customer-details
+  [selectedId]="selectedId"
+  [customers]="customers"
+  [customerDetailsRecords]="customerDetailsRecords"
+></customer-details>
