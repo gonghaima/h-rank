@@ -1,0 +1,39 @@
+<h8k-navbar header="Catalog Viewer"></h8k-navbar>
+<div class="layout-column justify-content-center mt-75">
+  <div class="layout-row justify-content-center">
+    <div class="card pt-25">
+      <viewer [catalogImage]="catalogsList[activeIndex].image"></viewer>
+      <div class="layout-row justify-content-center align-items-center mt-20">
+        <button
+          class="icon-only outlined"
+          data-test-id="prev-slide-btn"
+          (click)="showPrevious()"
+        >
+          <i class="material-icons">arrow_back</i>
+        </button>
+        <thumbs
+          [items]="catalogsList"
+          [currentIndex]="activeIndex"
+          (selectedCatalog)="selectedCatalog($event)"
+        >
+        </thumbs>
+        <button
+          class="icon-only outlined"
+          data-test-id="next-slide-btn"
+          (click)="showNext()"
+        >
+          <i class="material-icons">arrow_forward</i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="layout-row justify-content-center mt-25">
+    <input
+      type="checkbox"
+      data-test-id="toggle-slide-show-button"
+      [checked]="slideShowEnabled"
+      (change)="toggleSlideShow($event.target.checked)"
+    />
+    <label class="ml-6">Start Slide Show</label>
+  </div>
+</div>

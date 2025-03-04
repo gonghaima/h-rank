@@ -1,0 +1,16 @@
+<div class="layout-row">
+  <span *ngFor="let catalog of items; let idx = index">
+    <span
+      class="inline-flex w-90 pa-4 image-thumb"
+      [ngClass]="{ 'thumb-selected': idx === currentIndex }"
+    >
+      <span
+        class="mx-5 thumb"
+        [attr.data-test-id]="'thumb-button-' + idx"
+        [ngStyle]="{ 'background-image': 'url(' + catalog.thumb + ')' }"
+        (click)="selectCatalog(idx)"
+      >
+      </span>
+    </span>
+  </span>
+</div>

@@ -1,0 +1,12 @@
+SELECT 
+    a.email,
+    COALESCE(SUM(CASE WHEN MONTH(r.dt) BETWEEN 1 AND 3 THEN r.amount ELSE 0 END), 0) AS q1_income,
+    COALESCE(SUM(CASE WHEN MONTH(r.dt) BETWEEN 4 AND 6 THEN r.amount ELSE 0 END), 0) AS q2_income,
+    COALESCE(SUM(CASE WHEN MONTH(r.dt) BETWEEN 7 AND 9 THEN r.amount ELSE 0 END), 0) AS q3_income,
+    COALESCE(SUM(CASE WHEN MONTH(r.dt) BETWEEN 10 AND 12 THEN r.amount ELSE 0 END), 0) AS q4_income,
+    COALESCE(SUM(r.amount), 0) AS total_yearly_income
+FROM accounts a
+LEFT JOIN reports r ON a.id = r.account_id
+WHERE r.dt BETWEEN '2023-01-01' AND '2023-12-31'
+GROUP BY a.email
+ORDER BY a.email ASC;  -- Sorting by email in ascending order
