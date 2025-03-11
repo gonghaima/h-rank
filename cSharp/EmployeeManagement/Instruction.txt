@@ -1,0 +1,123 @@
+2. C#: Employees Management
+
+Given a list of data, implement the following 3 methods using LINQ in a class that allows for managing employees:
+
+1. AverageAgeForEach Company - calculates the average age of employees for each unique company and returns the results as
+
+a Dictionary<string, int> sorted by key, where Key[string] is the unique company name, and Value[int] is the average age of employees in this
+company. The average age is rounded to the nearest whole number.
+
+2. CountOfEmployees For Each Company-calculates the count of employees for each unique company and returns the results as
+
+a Dictionary<string, Int> sorted by key, where Key[string] is the unique company name, and Value[int] is the count of employees in this
+company.
+
+3. OldestAgeForEachCompany - finds the oldest aged employee for each unique company and returns the results as a Dictionary<string,
+Employee> sorted by key, where Key[string] is the unique company name, and Value Employee] is the oldest employee in this company.
+
+Here is the description of the Employee class:
+
+• FirstName [string] - the first name of the employee.
+
+• LastName[string] - the last name of the employee.
+
+• Company [string] - the company of the employee.
+
+• Age [int] - the age of the employee.
+
+Your implementation of the class will be tested by a stubbed code on several input files. The input file contains parameters for the
+function calls (i.e., the employee data). The functions will be called with those parameters, and the result of their executions will be printed to the standard output by the stubbed code.
+
+Input Format For Custom Testing
+
+The first line contains the employee data as a string. The string contains a list of employees separated by semicolons (;). Each employee is represented by a string containing the employee's first name, last name, company, and age, separated by commas (,).
+
+Output Format
+
+The first n lines contain the average age of employees for each unique company, sorted by company name. Each line contains a string in the format "The average age for company (companyName) is (averageAge)".
+
+The next n lines contain the count of employees for each unique company, sorted by company name. Each line contains a string in the format "The count of employees for company (companyName) is (count)".
+
+The next n lines contain the oldest employee for each unique company, sorted by company name. Each line contains a string in the format "The oldest employee of company (companyName) is (firstName) (lastName) having age (age)".
+
+Sample Input 0
+
+Emmerson,Stradley,B,43;Sheilah,Stradley,A,40;Neal,Falloon,A,38;Nicol,Falloon,B,45
+
+Sample Output 0
+
+The average age for company A is 39
+The average age for company B is 44
+The count of employees for company A is 2
+The count of employees for company B is 2
+The oldest employee of company A is Sheilah Stradley having age 40
+The oldest employee of company B is Nicol Falloon having age 45
+
+Stubbed Code
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Solution
+{
+    public class Solution
+    {
+        public static Dictionary<string, int> AverageAgeForEachCompany(List<Employee> employees)
+        {
+            // Implement this method
+        }
+
+        public static Dictionary<string, int> CountOfEmployeesForEachCompany(List<Employee> employees)
+        {
+            // Implement this method
+        }
+
+        public static Dictionary<string, Employee> OldestAgeForEachCompany(List<Employee> employees)
+        {
+            // Implement this method
+        }
+
+        public static void Main()
+        {
+            string input = Console.ReadLine();
+            List<Employee> employees = new List<Employee>();
+            string[] employeeStrings = input.Split(';');
+
+            foreach (string employeeString in employeeStrings)
+            {
+                string[] strArr = employeeString.Split(',');
+                employees.Add(new Employee
+                {
+                    FirstName = strArr[0],
+                    LastName = strArr[1],
+                    Company = strArr[2],
+                    Age = int.Parse(strArr[3])
+                });
+            }
+
+            foreach (var emp in AverageAgeForEachCompany(employees))
+            {
+                Console.WriteLine($"The average age for company {emp.Key} is {emp.Value}");
+            }
+
+            foreach (var emp in CountOfEmployeesForEachCompany(employees))
+            {
+                Console.WriteLine($"The count of employees for company {emp.Key} is {emp.Value}");
+            }
+
+            foreach (var emp in OldestAgeForEachCompany(employees))
+            {
+                Console.WriteLine($"The oldest employee of company {emp.Key} is {emp.Value.FirstName} {emp.Value.LastName} having age {emp.Value.Age}");
+            }
+        }
+    }
+
+    public class Employee
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
+        public string Company { get; set; }
+    }
+}

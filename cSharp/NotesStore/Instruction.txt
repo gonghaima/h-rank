@@ -1,0 +1,101 @@
+C#: Notes Store
+
+In this challenge, the task is to implement a class called NotesStore. The class will manage a collection of notes, with each note having
+a state and a name. Valid states for notes are 'completed', 'active', and 'others'. All other states are invalid.
+
+The class must have the following methods:
+
+1. AddNote(state, name): Adds a note with the given name (string) and state (string) to the collection. In addition to that:
+ If the passed name is empty, then it throws an Exception with the message 'Name cannot be empty'.
+ If the passed name is non-empty but the given state is not a valid state for a note, then it throws an Exception with the message
+'Invalid state (state)'.
+
+2. GetNotes(state): Returns a list of note names with the given state (string) added so far. The names are returned in the order the
+corresponding notes were added. In addition to that:
+ If the given state is not a valid state, then it throws an Exception with the message 'Invalid state (state)'.
+ If no notes are found for the given state, then it returns an empty list.
+
+Input Format For Custom Testing
+
+The first line contains an integer n, which is the number of operations to be performed.
+Each of the next n lines contains an operation in one of the following two formats:
+AddNote state name
+GetNotes state
+
+Output Format
+
+For each operation, if it is a GetNotes operation, then print the names of the notes with the given state in the order they were added,
+separated by commas. If no notes are found for the given state, then print 'No Notes'.
+If the operation is an AddNote operation, then do not print anything.
+
+Sample Input 0
+
+5
+AddNote completed Finish chapter 
+AddNote active Prepare for interview
+GetNotes active
+GetNotes completed
+GetNotes others
+
+Sample Output 0
+
+Prepare for interview
+Finish chapter
+No Notes
+
+Sample Input 1
+
+6
+AddNote active DrinkTea
+AddNote active DrinkCoffee
+AddNote completed Study
+GetNotes active 
+GetNotes completed
+GetNotes foo
+
+Sample Output 1
+
+DrinkTea,DrinkCoffee
+Study
+Invalid state foo
+
+Stubbed Code
+
+using System;
+using System.Collections.Generic;
+
+public class NotesStore
+{
+    // Implement the NotesStore class here
+}
+
+public class Solution
+{
+    public static void Main()
+    {
+        var notesStoreObj = new NotesStore();
+        var n = int.Parse(Console.ReadLine());
+        for (var i = 0; i < n; i++) {
+            var operationInfo = Console.ReadLine().Split(' ');
+            try
+            {
+                if (operationInfo[0] == "AddNote")
+                    notesStoreObj.AddNote(operationInfo[1], operationInfo.Length == 2 ? "" : operationInfo[2]);
+                else if (operationInfo[0] == "GetNotes")
+                {
+                    var result = notesStoreObj.GetNotes(operationInfo[1]);
+                    if (result.Count == 0)
+                        Console.WriteLine("No Notes");
+                    else
+                        Console.WriteLine(string.Join(",", result));
+                } else {
+                    Console.WriteLine("Invalid Parameter");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+        }
+    }
+}
