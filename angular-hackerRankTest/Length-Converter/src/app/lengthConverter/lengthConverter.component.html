@@ -1,0 +1,51 @@
+<div class="layout-row align-items-center justify-content-center mt-50">
+  <section class="layout-column align-items-center justify-content-between">
+    <span class="input layout-row">
+      <input
+        type="number"
+        class="large"
+        data-test-id="app-input1"
+        [(ngModel)]="input1Value"
+        (input)="convert('input1')"
+      />
+      <label class="suffix" data-test-id="app-label1">{{
+        lengthOptions[selectedOption1].unit
+      }}</label>
+    </span>
+    <select
+      data-test-id="app-select1"
+      [(ngModel)]="selectedOption1"
+      (change)="convert('input1')"
+    >
+      <option *ngFor="let option of lengthOptions" [value]="option.id">
+        {{ option.label }}
+      </option>
+    </select>
+  </section>
+
+  <label>⇋</label>
+
+  <section class="layout-column align-items-center justify-content-between">
+    <span class="input layout-row">
+      <input
+        type="number"
+        class="large"
+        data-test-id="app-input2"
+        [(ngModel)]="input2Value"
+        (input)="convert('input2')"
+      />
+      <label class="suffix" data-test-id="app-label2">{{
+        lengthOptions[selectedOption2].unit
+      }}</label>
+    </span>
+    <select
+      data-test-id="app-select2"
+      [(ngModel)]="selectedOption2"
+      (change)="convert('input1')"
+    >
+      <option *ngFor="let option of lengthOptions" [value]="option.id">
+        {{ option.label }}
+      </option>
+    </select>
+  </section>
+</div>
